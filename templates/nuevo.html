@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<div class="card">
+
+<h4>➕ Registrar Producto</h4>
+<p class="text-muted">Completa los datos del producto</p>
+
+<form method="POST">
+
+<label>Nombre del producto</label>
+<input name="nombre" class="form-control mb-3" placeholder="Ej: Laptop HP" required>
+
+<label>Categoría</label>
+<input name="categoria" class="form-control mb-3" placeholder="Ej: Tecnología" required>
+
+<label>Precio</label>
+<input name="precio" type="number" step="0.01" class="form-control mb-3" required>
+
+<label>Stock</label>
+<input name="stock" type="number" class="form-control mb-3" required>
+
+<button class="btn btn-success w-100">Guardar Producto</button>
+
+</form>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<div class="card">
+
+<h4>✏️ Editar Producto</h4>
+
+<form method="POST">
+
+<label>Nombre</label>
+<input name="nombre" value="{{producto['nombre']}}" class="form-control mb-3">
+
+<label>Categoría</label>
+<input name="categoria" value="{{producto['categoria']}}" class="form-control mb-3">
+
+<label>Precio</label>
+<input name="precio" value="{{producto['precio']}}" class="form-control mb-3">
+
+<label>Stock</label>
+<input name="stock" value="{{producto['stock']}}" class="form-control mb-3">
+
+<button class="btn btn-warning w-100">Actualizar</button>
+
+</form>
+
+</div>
+
+{% endblock %}
