@@ -1,0 +1,59 @@
+/* Fondo elegante */
+body {
+    background: #f1f5f9;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Navbar moderna */
+.navbar {
+    background: #1e293b !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* Contenedor */
+.container {
+    margin-top: 30px;
+}
+
+/* Tarjetas */
+.card {
+    border: none;
+    border-radius: 16px;
+    padding: 25px;
+    background: white;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+/* Botones */
+.btn {
+    border-radius: 10px;
+    transition: 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+/* Tabla */
+.table {
+    margin-top: 15px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.table thead {
+    background: #1e293b;
+    color: white;
+}
+
+/* Badges */
+.badge {
+    padding: 6px 10px;
+    font-size: 12px;
+}
+
+/* Inputs */
+.form-control {
+    border-radius: 10px;
+    padding: 10px;
+}
