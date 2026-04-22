@@ -17,7 +17,7 @@ def index():
     db.close()
     return render_template("index.html", productos=productos)
 
-# NUEVO
+# registrar nuevo
 @app.route('/nuevo', methods=['GET', 'POST'])
 def nuevo():
     if request.method == 'POST':
