@@ -11,7 +11,7 @@ def get_db():
 
 # LISTAR
 @app.route('/')
-def index():
+def listar():
     db = get_db()
     productos = db.execute("SELECT * FROM productos").fetchall()
     db.close()
@@ -19,7 +19,7 @@ def index():
 
 # registrar nuevo
 @app.route('/nuevo', methods=['GET', 'POST'])
-def nuevo():
+def registrar():
     if request.method == 'POST':
         nombre = request.form['nombre'].strip()
         categoria = request.form['categoria'].strip()
@@ -86,5 +86,8 @@ def eliminar(id):
     flash("Producto eliminado")
     return redirect(url_for('index'))
 
-if __name__ == '__main__':
-    app.run(debug=True)
+import os
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
