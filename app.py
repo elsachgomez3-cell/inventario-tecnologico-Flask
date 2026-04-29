@@ -1,9 +1,31 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 import sqlite3
+import os
 
 app = Flask(__name__)
 app.secret_key = "inventario_secret"
 
+# 🔥 CREAR BD AUTOMÁTICAMENTE
+def init_db():
+    conn = sqlite3.connect("inventario.db")
+    cursor = conn.cursor()
+    
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS productos (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nombre TEXT,
+        categoria TEXT,
+        precio REAL,
+        stock INTEGER
+    )
+    """)
+    
+    conn.commit()
+    conn.close()
+
+init_db()
+
+# CONEXIÓN
 def get_db():
     conn = sqlite3.connect("inventario.db")
     conn.row_factory = sqlite3.Row
@@ -17,9 +39,9 @@ def listar():
     db.close()
     return render_template("index.html", productos=productos)
 
-# registrar nuevo
+# NUEVO
 @app.route('/nuevo', methods=['GET', 'POST'])
-def registrar():
+def nuevo():
     if request.method == 'POST':
         nombre = request.form['nombre'].strip()
         categoria = request.form['categoria'].strip()
@@ -43,7 +65,7 @@ def registrar():
         db.close()
 
         flash("Producto agregado correctamente")
-        return redirect(url_for('index'))
+        return redirect(url_for('listar'))
 
     return render_template("nuevo.html")
 
@@ -68,7 +90,7 @@ def editar(id):
         db.commit()
         db.close()
         flash("Producto actualizado")
-        return redirect(url_for('index'))
+        return redirect(url_for('listar'))
 
     producto = db.execute("SELECT * FROM productos WHERE id=?", (id,)).fetchone()
     db.close()
@@ -84,10 +106,9 @@ def eliminar(id):
     db.close()
 
     flash("Producto eliminado")
-    return redirect(url_for('index'))
+    return redirect(url_for('listar'))
 
-import os
-
+# 🚀 PARA RENDER
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port)
